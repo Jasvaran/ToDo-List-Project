@@ -1,5 +1,11 @@
 import { storageModule } from "./storage";
+import { taskModule } from "./task";
 const projectModule = (() => {
+
+    let projectFactory = (projectTitle) => {
+        let tasks = [];
+        return {projectTitle, tasks}
+    }
 
     
     function renderProject(projects) {
@@ -29,21 +35,39 @@ const projectModule = (() => {
         nodelist.forEach(ele => {
             ele.addEventListener('click', (e) => {
                 let target = e.target.childNodes[0].textContent
-                console.log(target)
-                returnProjectObject(target)
+                
+                returnProjectObject(target, storageModule.projectArray)
 
-                return target;
+                
 
             })
         })
     }
     
-    function returnProjectObject(target) {
+    function returnProjectObject(target, array) {
+        array.forEach(project => {
+            if (target === project.projectTitle){
+                taskModule.renderTask(project)
+            };
+        });
+    };
+
+    function addNewProject(array){
+        let input = document.querySelector('#project');
+        let inputDiv = document.querySelector('.input-div')
+        let newProject = projectFactory(input.value)
+        array.push(newProject);
+        console.log(array)
+        input.remove()
+        inputDiv.remove();
+
+
+
         
     }
 
 
-    return {renderProject, projectEventListener, returnProjectObject}
+    return {renderProject, projectEventListener, returnProjectObject, addNewProject}
 
 })();
 

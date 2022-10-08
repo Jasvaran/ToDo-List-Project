@@ -21,6 +21,11 @@ addProjectBtn.addEventListener('click', () => {
    let addBtn = document.createElement('button');
    addBtn.classList.add('add');
    addBtn.textContent = 'Add';
+   addBtn.addEventListener('click', () => {
+      projectModule.addNewProject(storageModule.projectArray);
+      projectModule.renderProject(storageModule.projectArray);
+      projectModule.projectEventListener();
+   })
 
    let cancelBtn = document.createElement('button');
    cancelBtn.classList.add('cancel');
@@ -50,6 +55,8 @@ const ToDoListModule = (() => {
    
    
    projectModule.projectEventListener();
+
+   
    
   
 

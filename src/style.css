@@ -123,8 +123,8 @@ table {
 }
 
 .task-container {
-	height: 25%;
-	width: 25%;
+	height: fit-content;
+	width: auto;
 	border: 1px solid black;
 }
 
