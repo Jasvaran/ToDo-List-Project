@@ -6,7 +6,7 @@ const storageModule = (() => {
             tasks: [
                 {
                     taskTitle: 'English Essay',
-                    Description: 'Write a two page essay on a current event',
+                    description: 'Write a two page essay on a current event',
                     dueDate: '10/20/2022',
                     priority: 'High',
                     notes: 'N/A',
@@ -14,7 +14,7 @@ const storageModule = (() => {
                 },
                 {
                     taskTitle: 'Math Problems',
-                    Description: 'Finish math problems',
+                    description: 'Finish math problems',
                     dueDate: '5/20/2022',
                     priority: 'Low',
                     notes: 'N/A',
