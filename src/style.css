@@ -120,6 +120,7 @@ table {
 	grid-area: 2/2/2/3;
 	display: flex;
 	justify-content: flex-start;
+	flex-direction: column;
 }
 
 .task-container {
@@ -128,9 +129,40 @@ table {
 	border: 1px solid black;
 }
 
+.add-task-button {
+	height: 50px;
+	width: 50px;
+}
 
 
 .footer {
 	background-color: var(--background-color);
 	grid-area: 3/1/4/3
 }
+
+
+
+.form-container{
+	visibility: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-area: 2/2/3/3;
+
+}
+
+.modal-container {
+	z-index: 1;
+	height: 400px;
+	width: 350px;
+}
+
+form {
+	
+	display: grid;
+	grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	gap: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+

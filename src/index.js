@@ -4,8 +4,13 @@ import { projectModule } from "./project"
 import { taskModule } from './task';
 
 
+
+
 let bottom = document.querySelector('.bottom');
 let addProjectBtn = document.querySelector('.add-project');
+let content = document.getElementById('content');
+let addNewTaskBtn = document.querySelector('.add-task-button');
+let cancelTaskFormBtn = document.querySelector('.cancel-submit')
 
 
 
@@ -40,6 +45,17 @@ addProjectBtn.addEventListener('click', () => {
    bottom.appendChild(inputBar);
    bottom.appendChild(inputDiv);
 
+});
+
+
+
+addNewTaskBtn.addEventListener('click', () => {
+   taskModule.showTaskForm();
+})
+
+
+cancelTaskFormBtn.addEventListener('click', () => {
+   taskModule.removeTaskForm();
 })
 
 
@@ -55,6 +71,7 @@ const ToDoListModule = (() => {
    
    
    projectModule.projectEventListener();
+   
 
    
    
@@ -64,6 +81,13 @@ const ToDoListModule = (() => {
    
    
 })();
+
+
+
+
+
+
+
 
 
 
