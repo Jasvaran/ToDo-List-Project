@@ -10,7 +10,8 @@ let bottom = document.querySelector('.bottom');
 let addProjectBtn = document.querySelector('.add-project');
 let content = document.getElementById('content');
 let addNewTaskBtn = document.querySelector('.add-task-button');
-let cancelTaskFormBtn = document.querySelector('.cancel-submit')
+let cancelTaskFormBtn = document.querySelector('.cancel-submit');
+let formElement = document.querySelector('form');
 
 
 
@@ -58,7 +59,10 @@ cancelTaskFormBtn.addEventListener('click', () => {
    taskModule.removeTaskForm();
 })
 
-
+formElement.addEventListener('submit', (e) => {
+   e.preventDefault();
+   taskModule.createNewTask();
+})
 
 
 

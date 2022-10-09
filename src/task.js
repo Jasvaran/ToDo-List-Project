@@ -2,6 +2,7 @@ import "./index.js"
 import { ToDoListModule } from ".";
 import { projectModule } from "./project";
 import { createTaskHeading } from ".";
+import { storageModule } from "./storage.js";
 
 
 const taskModule = (() => {
@@ -16,9 +17,10 @@ const taskModule = (() => {
         
 
         
-        project.tasks.forEach(ele => {
+        project.tasks.forEach((ele, index) => {
             let taskDiv = document.createElement('div');
             taskDiv.classList.add('task-container');
+            taskDiv.setAttribute('id', index)
             
             let taskContent = `<h1 class="task-title>Title: ${ele.taskTitle}</h1>
                                 <br>
@@ -51,8 +53,27 @@ const taskModule = (() => {
         let formContainer = document.querySelector('.form-container');
         formContainer.style.visibility = 'hidden'
     }
+
+    function createNewTask() {
+        
+
+        let $taskTitle = document.getElementById('title')
+        let $taskDescription = document.getElementById('description')
+        let $taskDueDate = document.getElementById('dueDate')
+        let $priority = document.getElementById('priority')
+        let $notes = document.getElementById('notes')
+        let $checkList = document.getElementById('checklist')
+
+        let newTask = taskFactory($taskTitle.value, $taskDescription.value, $taskDueDate.value,
+                                    $priority.value, $notes.value, $checkList.value)
+
+        // storageModule.projectArray.forEach(element => {
+        //     if (storageModule.activeProject === element.)
+        // });
+
+    }
     
-   return {renderTask, showTaskForm, removeTaskForm}
+   return {renderTask, showTaskForm, removeTaskForm, createNewTask} 
 
 })();
 

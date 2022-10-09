@@ -1,5 +1,7 @@
 const storageModule = (() => {
 
+    let activeProject;
+
     let projectArray = [
         {
             projectTitle: 'Homework',
@@ -37,12 +39,16 @@ const storageModule = (() => {
         }
     ]
 
+    
+
 
     function testOne() {
         console.log("testing import functions")
     }
     return {projectArray,
-            testOne
+            testOne,
+            activeProject
+            
     }
 
 })();

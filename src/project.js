@@ -13,6 +13,7 @@ const projectModule = (() => {
         let projectListContainer = document.querySelector('.project-list');
         projectListContainer.textContent = "";
         projects.forEach((element, index) => {
+            console.log(element)
             let projectButton = document.createElement('button');
             projectButton.textContent = element.projectTitle
             projectButton.classList.add('project-button');
@@ -31,10 +32,15 @@ const projectModule = (() => {
     };
 
     function projectEventListener() {
+        
         let nodelist = document.querySelectorAll('.project-button')
-        nodelist.forEach(ele => {
+        nodelist.forEach((ele, index) => {
             ele.addEventListener('click', (e) => {
                 let target = e.target.childNodes[0].textContent
+                // console.log(e)
+                // console.log(e.target.id)
+                setActiveProject(e.target.id)
+                
                 
                 returnProjectObject(target, storageModule.projectArray)
 
@@ -43,6 +49,13 @@ const projectModule = (() => {
             })
         })
     }
+
+    function setActiveProject(id) {
+        storageModule.activeProject = id
+        return storageModule.activeProject;
+    };
+
+    
     
     function returnProjectObject(target, array) {
         array.forEach(project => {
@@ -67,7 +80,7 @@ const projectModule = (() => {
     }
 
 
-    return {renderProject, projectEventListener, returnProjectObject, addNewProject}
+    return {renderProject, projectEventListener, returnProjectObject, addNewProject, setActiveProject,}
 
 })();
 

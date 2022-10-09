@@ -161,8 +161,12 @@ form {
 	
 	display: grid;
 	grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	height: 400px;
 	gap: 10px;
 	border: 1px solid black;
 	border-radius: 10px;
 }
 
+.submit-btn-container{
+	margin-left: 10rem;
+}
