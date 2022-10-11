@@ -220,3 +220,11 @@ button:hover {
 	justify-content: space-around;
 	
 }
+
+.today, .inbox, .this-week{
+	width: 100%;
+}
+
+.task-edit, .task-delete {
+	width: 150px;
+}

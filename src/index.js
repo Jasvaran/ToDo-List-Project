@@ -11,11 +11,14 @@ format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 
 let bottom = document.querySelector('.bottom');
 let addProjectBtn = document.querySelector('.add-project');
-let content = document.getElementById('content');
+let taskContent = document.querySelector('.task-content');
 let addNewTaskBtn = document.querySelector('.add-task-button');
 let cancelTaskFormBtn = document.querySelector('.cancel-submit');
 let formElement = document.querySelector('form');
-let today = document.querySelector('.today')
+let today = document.querySelector('.today');
+let deleteProjectBtn = document.querySelector('.delete-project');
+
+
 
 
 
@@ -80,7 +83,14 @@ today.addEventListener('click', () => {
    taskModule.renderToday(storageModule.projectArray);
 })
 
-
+deleteProjectBtn.addEventListener('click', () => {
+   projectModule.deleteProject(storageModule.projectArray);
+   taskContent.textContent = "";
+   projectModule.renderProject(storageModule.projectArray);
+   projectModule.projectEventListener();
+   
+   
+})
 
 
 

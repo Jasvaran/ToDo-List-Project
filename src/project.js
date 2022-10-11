@@ -87,8 +87,19 @@ const projectModule = (() => {
         
     }
 
+    function deleteProject(array) {
+        let deleteInput = prompt('Name of project you want to delete')
+        array.forEach((project, index) => {
+            if (deleteInput === project.projectTitle){
+                array.splice(index, 1);
+            } else {
+                return;
+            }
+        })
+    }
 
-    return {renderProject, projectEventListener, returnProjectObject, addNewProject, setActiveProject,}
+
+    return {renderProject, projectEventListener, returnProjectObject, addNewProject, setActiveProject, deleteProject}
 
 })();
 
