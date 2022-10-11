@@ -2,7 +2,7 @@ import './style.css';
 import { storageModule } from "./storage";
 import { projectModule } from "./project"
 import { taskModule } from './task';
-import { compareAsc, format, isSameDay } from 'date-fns';
+import { compareAsc, format, isSameDay, isThisWeek } from 'date-fns';
 format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 
 
@@ -16,6 +16,7 @@ let addNewTaskBtn = document.querySelector('.add-task-button');
 let cancelTaskFormBtn = document.querySelector('.cancel-submit');
 let formElement = document.querySelector('form');
 let today = document.querySelector('.today');
+let thisWeek = document.querySelector('.this-week');
 let deleteProjectBtn = document.querySelector('.delete-project');
 let taskEdit = document.querySelector('.task-edit')
 
@@ -95,6 +96,11 @@ today.addEventListener('click', () => {
    taskModule.renderToday(storageModule.projectArray);
 })
 
+thisWeek.addEventListener('click', (e) => {
+   e.preventDefault
+   taskModule.renderThisWeek(storageModule.projectArray);
+})
+
 deleteProjectBtn.addEventListener('click', () => {
    projectModule.deleteProject(storageModule.projectArray);
    taskContent.textContent = "";
@@ -108,8 +114,10 @@ deleteProjectBtn.addEventListener('click', () => {
 
 const ToDoListModule = (() => {
 
-   
-   
+   console.log(isThisWeek(new Date(2022, 9, 12)))
+   if (isThisWeek(new Date(2022, 9, 12)) === true) {
+      console.log('this is true')
+   }
    projectModule.renderProject(storageModule.projectArray);
    
    

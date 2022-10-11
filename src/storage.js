@@ -16,7 +16,7 @@ const storageModule = (() => {
                 {
                     taskTitle: 'English Essay',
                     description: 'Write a two page essay on a current event',
-                    dueDate: new Date(2022, 9, 10),
+                    dueDate: new Date(2022, 9, 12),
                     priority: 'High',
                     notes: 'N/A',
                     checkList: 'N/A'

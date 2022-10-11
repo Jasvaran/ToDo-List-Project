@@ -3,7 +3,7 @@ import { ToDoListModule } from ".";
 import { projectModule } from "./project";
 import { createTaskHeading } from ".";
 import { storageModule } from "./storage.js";
-import { compareAsc, format, isToday } from 'date-fns';
+import { compareAsc, format, isThisWeek, isToday } from 'date-fns';
 format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 
 
@@ -15,13 +15,13 @@ const taskModule = (() => {
     let $priority = document.getElementById('priority')
     let $notes = document.getElementById('notes')
     let $checkList = document.getElementById('checklist');
+    let tContent = document.querySelector('.task-content');
 
     const taskFactory = (taskTitle, description, dueDate, priority, notes, checkList) => {
         return {taskTitle, description, dueDate, priority, notes, checkList};
     };
 
     function renderTask(project) {
-        let tContent = document.querySelector('.task-content');
         tContent.textContent = "";
         
         
@@ -90,7 +90,7 @@ const taskModule = (() => {
        
 
        array[id].tasks.push(newTask)
-       console.log(array)
+       
        return array
         
     }
@@ -111,11 +111,24 @@ const taskModule = (() => {
             project.tasks.forEach(task => {
                 if (isToday(task.dueDate) === true) {
                     renderTask(project);
-                };
+                } else {
+                    tContent.textContent = "";
+                }
             });
         });
     };
 
+
+    function renderThisWeek(array) {
+        array.forEach(project => {
+            project.tasks.forEach(task => {
+                if (isThisWeek(task.dueDate) === true){
+                    console.log(task);
+                    renderTask(project);
+                }
+            })
+        })
+    }
 
 
     function editTaskEvent(array, projectID) {
@@ -153,7 +166,7 @@ const taskModule = (() => {
     }
 
     
-   return {renderTask, showTaskForm, removeTaskForm, clearForm, createNewTask, renderToday, editTaskEvent, editTask} 
+   return {renderTask, showTaskForm, removeTaskForm, clearForm, createNewTask, renderToday, renderThisWeek, editTaskEvent, editTask} 
 
 })();
 
