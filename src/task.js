@@ -9,6 +9,12 @@ format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 
 
 const taskModule = (() => {
+    let $taskTitle = document.getElementById('title')
+    let $taskDescription = document.getElementById('description')
+    let $taskDueDate = document.getElementById('dueDate')
+    let $priority = document.getElementById('priority')
+    let $notes = document.getElementById('notes')
+    let $checkList = document.getElementById('checklist');
 
     const taskFactory = (taskTitle, description, dueDate, priority, notes, checkList) => {
         return {taskTitle, description, dueDate, priority, notes, checkList};
@@ -38,7 +44,7 @@ const taskModule = (() => {
                                <br>
                                <p class="task-checklist">Checklist: ${ele.checkList}</p>
                                <button class="task-edit" id=${index}>  Edit  </button>
-                               <button class="task-delete" id=${index}>  Delete  </button>
+                               <button onclick="return false" class="task-delete" id=${index}>  Delete  </button>
             
             `
 
@@ -46,6 +52,7 @@ const taskModule = (() => {
             tContent.appendChild(taskDiv)
         })
         deleteTaskEvent();
+        editTaskEvent(storageModule.projectArray, storageModule.activeProject);
     }
 
     function showTaskForm() {
@@ -59,12 +66,7 @@ const taskModule = (() => {
     }
 
     function clearForm() {
-        let $taskTitle = document.getElementById('title')
-        let $taskDescription = document.getElementById('description')
-        let $taskDueDate = document.getElementById('dueDate')
-        let $priority = document.getElementById('priority')
-        let $notes = document.getElementById('notes')
-        let $checkList = document.getElementById('checklist')
+
 
         $taskTitle.value = "";
         $taskDescription.value = "";
@@ -77,12 +79,7 @@ const taskModule = (() => {
     function createNewTask(array, id) {
         
 
-        let $taskTitle = document.getElementById('title')
-        let $taskDescription = document.getElementById('description')
-        let $taskDueDate = document.getElementById('dueDate')
-        let $priority = document.getElementById('priority')
-        let $notes = document.getElementById('notes')
-        let $checkList = document.getElementById('checklist');
+
 
         let theDate = new Date($taskDueDate.value);
         
@@ -118,8 +115,45 @@ const taskModule = (() => {
             });
         });
     };
+
+
+
+    function editTaskEvent(array, projectID) {
+        let taskEdit = document.querySelectorAll('.task-edit')
+
+        taskEdit.forEach((task, index) => {
+            task.addEventListener('click', (e) => {
+                let $taskTitle = document.getElementById('title').value = array[projectID].tasks[index].taskTitle
+                let $taskDescription = document.getElementById('description').value = array[projectID].tasks[index].description
+                let $taskDueDate = document.getElementById('dueDate').value = array[projectID].tasks[index].dueDate
+                let $priority = document.getElementById('priority').value = array[projectID].tasks[index].priority
+                let $notes = document.getElementById('notes').value = array[projectID].tasks[index].notes
+                let $checkList = document.getElementById('checklist').value = array[projectID].tasks[index].checkList
+                storageModule.formState = 'Edit'
+                storageModule.taskEditIndex = index
+                showTaskForm();
+                
+            
+                })
+        })
+    }
+
+    function editTask(array, projectID, taskID) {
+
+        let theDate = new Date($taskDueDate.value);
+
+        array[projectID].tasks[taskID].taskTitle = $taskTitle.value
+        array[projectID].tasks[taskID].description = $taskDescription.value
+        array[projectID].tasks[taskID].dueDate = theDate
+        array[projectID].tasks[taskID].priority = $priority.value
+        array[projectID].tasks[taskID].notes = $notes.value
+        array[projectID].tasks[taskID].checkList = $checkList.value
+                                      
+
+    }
+
     
-   return {renderTask, showTaskForm, removeTaskForm, clearForm, createNewTask, renderToday} 
+   return {renderTask, showTaskForm, removeTaskForm, clearForm, createNewTask, renderToday, editTaskEvent, editTask} 
 
 })();
 

@@ -5,7 +5,9 @@ const storageModule = (() => {
     let activeProject;
     let activeProjectTitle;
     let activeInput;
-    let currentDate = new Date();
+    let formState;
+    let taskEditIndex;
+
 
     let projectArray = [
         {
@@ -56,6 +58,8 @@ const storageModule = (() => {
             activeProject,
             activeProjectTitle,
             activeInput,
+            formState,
+            taskEditIndex
             
     }
 

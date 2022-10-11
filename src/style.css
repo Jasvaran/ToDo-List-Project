@@ -189,7 +189,7 @@ table {
 }
 
 form {
-	
+	background-color: white;
 	display: grid;
 	grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	height: 400px;
@@ -227,4 +227,8 @@ button:hover {
 
 .task-edit, .task-delete {
 	width: 150px;
+}
+
+.add, .cancel {
+	width: 100px;
 }

@@ -17,7 +17,7 @@ let cancelTaskFormBtn = document.querySelector('.cancel-submit');
 let formElement = document.querySelector('form');
 let today = document.querySelector('.today');
 let deleteProjectBtn = document.querySelector('.delete-project');
-
+let taskEdit = document.querySelector('.task-edit')
 
 
 
@@ -59,23 +59,35 @@ addProjectBtn.addEventListener('click', () => {
 
 
 addNewTaskBtn.addEventListener('click', () => {
+   storageModule.formState = 'Add'
    taskModule.showTaskForm();
 })
 
 
 cancelTaskFormBtn.addEventListener('click', () => {
    console.log('cancel');
+   storageModule.formState = '';
    taskModule.clearForm();
    taskModule.removeTaskForm();
 })
 
 formElement.addEventListener('submit', (e) => {
-   e.preventDefault();
-   taskModule.createNewTask(storageModule.projectArray, storageModule.activeProject);
-   projectModule.returnProjectObject(storageModule.activeProjectTitle, storageModule.projectArray);
-   taskModule.clearForm();
-   taskModule.removeTaskForm();
+   if (storageModule.formState === 'Add') {
+      e.preventDefault();
+      taskModule.createNewTask(storageModule.projectArray, storageModule.activeProject);
+      projectModule.returnProjectObject(storageModule.activeProjectTitle, storageModule.projectArray);
+      taskModule.clearForm();
+      taskModule.removeTaskForm();
+      storageModule.formState = '';
+   } else if (storageModule.formState === 'Edit') {
+      e.preventDefault();
+      taskModule.editTask(storageModule.projectArray, storageModule.activeProject, storageModule.taskEditIndex)
+      projectModule.returnProjectObject(storageModule.activeProjectTitle, storageModule.projectArray);
+      storageModule.formState = "";
+      taskModule.clearForm();
+      taskModule.removeTaskForm();
 
+   }
 
 })
 
@@ -96,11 +108,7 @@ deleteProjectBtn.addEventListener('click', () => {
 
 const ToDoListModule = (() => {
 
-   let dateA = new Date(2022, 9, 10)
-   let currentDate = new Date();
-   console.log(currentDate)
-   let result = isSameDay(dateA, currentDate);
-   console.log(result)
+   
    
    projectModule.renderProject(storageModule.projectArray);
    
