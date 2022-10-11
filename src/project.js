@@ -36,10 +36,13 @@ const projectModule = (() => {
         let nodelist = document.querySelectorAll('.project-button')
         nodelist.forEach((ele, index) => {
             ele.addEventListener('click', (e) => {
+                
                 let target = e.target.childNodes[0].textContent
                 // console.log(e)
                 // console.log(e.target.id)
                 setActiveProject(e.target.id)
+                setActiveProjectTitle(target)
+                
                 
                 
                 returnProjectObject(target, storageModule.projectArray)
@@ -51,8 +54,13 @@ const projectModule = (() => {
     }
 
     function setActiveProject(id) {
-        storageModule.activeProject = id
+        storageModule.activeProject = id;
         return storageModule.activeProject;
+    };
+
+    function setActiveProjectTitle(title) {
+        storageModule.activeProjectTitle = title;
+        return storageModule.activeProjectTitle;
     };
 
     

@@ -78,12 +78,19 @@ table {
 }
 
 .header-container {
+	display: flex;
+	align-items: center;
 	background-color: var(--background-color);
 	font-family: 'Great Vibes', cursive;
 	font-size: 60px;
 	color: white;
 	grid-area: 1/1/2/3;
 }
+
+.main-header {
+	margin-left: 1rem;
+}
+
 
 .side-bar{
 	display: grid;
@@ -116,22 +123,46 @@ table {
 }
 
 .content {
-	background-color: white;
+	background-color: #d1d5db;
 	grid-area: 2/2/2/3;
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
+	overflow: auto;
+}
+
+.task-heading{
+	font-family: 'Great Vibes', cursive;
+	font-size: 5rem;
+	padding-top: 1rem;
+
 }
 
 .task-container {
+	border-left: 10px solid var(--background-color);
+	border-top: 1px solid black;
 	height: fit-content;
-	width: auto;
-	border: 1px solid black;
+	width: 100%;
+	/* border: 1px solid var(--background-color); */
+	box-shadow: 10px 5px 5px #a1a1aa;
+	border-radius: 10px;
+	background-color: white;
+	margin-bottom: 2rem;
+	margin-top: 3px;
+	padding-left: 5px;
+	padding-bottom: 3px;
+}
+
+.task-content {
+	display: flex;
+	flex-direction: column;
+	align-items:flex-start;
+	padding-left: 5px;
 }
 
 .add-task-button {
-	height: 50px;
-	width: 50px;
+	height: 30px;
+	width: 150px;
 }
 
 
@@ -169,4 +200,23 @@ form {
 
 .submit-btn-container{
 	margin-left: 10rem;
+}
+
+button {
+	background-color: var(--background-color);
+	color: white;
+	cursor: pointer;
+	margin-top: 0.5rem;
+	border-radius: 10px;
+	border: none;
+	
+}
+button:hover {
+	opacity: 0.8;
+}
+
+.input-div {
+	display: flex;
+	justify-content: space-around;
+	
 }

@@ -1,6 +1,11 @@
+import { compareAsc, format } from 'date-fns';
+format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 const storageModule = (() => {
 
     let activeProject;
+    let activeProjectTitle;
+    let activeInput;
+    let currentDate = new Date();
 
     let projectArray = [
         {
@@ -9,7 +14,7 @@ const storageModule = (() => {
                 {
                     taskTitle: 'English Essay',
                     description: 'Write a two page essay on a current event',
-                    dueDate: '10/20/2022',
+                    dueDate: new Date(2022, 9, 10),
                     priority: 'High',
                     notes: 'N/A',
                     checkList: 'N/A'
@@ -17,7 +22,7 @@ const storageModule = (() => {
                 {
                     taskTitle: 'Math Problems',
                     description: 'Finish math problems',
-                    dueDate: '5/20/2022',
+                    dueDate: new Date(2022, 9, 10),
                     priority: 'Low',
                     notes: 'N/A',
                     checkList: 'N/A'
@@ -30,7 +35,7 @@ const storageModule = (() => {
                 {
                     taskTitle: 'Meeting with client 1',
                     description: 'Meet with client about contract',
-                    dueDate: 'N/A',
+                    dueDate: new Date(2022, 11, 10),
                     priority: 'High',
                     notes: 'N/A',
                     checkList: 'N/A',
@@ -39,15 +44,18 @@ const storageModule = (() => {
         }
     ]
 
-    
+
 
 
     function testOne() {
-        console.log("testing import functions")
+        let taskDelete = document.querySelector('.task-delete')
+        console.log(taskDelete)
     }
     return {projectArray,
             testOne,
-            activeProject
+            activeProject,
+            activeProjectTitle,
+            activeInput,
             
     }
 
